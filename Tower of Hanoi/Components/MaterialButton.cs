@@ -7,46 +7,53 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace Tower_of_Hanoi.Components
+namespace TowerOfHanoi.Components
 {
     public class MaterialButton : Control
     {
-        public override Color BackColor { get; set; } = Color.Blue;
+        public override Color BackColor { get; set; } = Theme.Primary;
+        public override Color ForeColor { get; set; } = Theme.OnPrimary;
+        public int Radius { get; set; } = 40;
+
+        private bool isHovered = false;
+
         public MaterialButton()
         {
-
-        }
-
-        public static GraphicsPath CreateRoundRect(int x, int y, int w, int h, int r)
-        {
-            int r2 = r * 2;
-
-            GraphicsPath p = new GraphicsPath();
-            p.AddArc(x, y, r2, r2, 180, 90);
-            //p.AddLine(x + r, y, x + w - r, y);
-            p.AddArc(x + w - r2, y, r2, r2, 270, 90);
-            //p.AddLine(x + w, y + r, x + w, y + h - r);
-            p.AddArc(x + w - r2, y + h - r2, r2, r2, 0, 90);
-            //p.AddLine(x + r, y + h, x + w - r, y + h);
-            p.AddArc(x, y + h - r2, r2, r2, 90, 90);
-            p.CloseFigure();
-            return p;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            //base.OnPaint(e);
-            //e.Graphics.FillRectangle(new SolidBrush(BackColor), 0, 0, Width, Height);
-            Graphics gfx = e.Graphics;
-            GraphicsPath gfxPath = CreateRoundRect(0, 0, Width, Height, 100);
-            Region region = new Region(gfxPath);
+            base.OnPaint(e);
 
-            SmoothingMode originalAliasing = gfx.SmoothingMode;
-            gfx.SmoothingMode = SmoothingMode.HighQuality;
-            gfx.FillPath(new SolidBrush(BackColor), gfxPath);
-            //gfx.DrawPath(new Pen(fillColor), gfxPath);
-            gfx.SetClip(region, CombineMode.Replace);
-            gfx.SmoothingMode = originalAliasing;
+            RectangleF rect = new RectangleF(0, 0, Width, Height);
+            GraphicsPath GraphPath = RoundedRectangle.GetPath(rect, Radius);
+
+            this.Region = new Region(GraphPath);
+            if (isHovered)
+            {
+                e.Graphics.FillPath(new SolidBrush(Color.FromArgb(50, 0, 0, 0)), GraphPath);
+            }
+
+
+            StringFormat sf = new StringFormat();
+            sf.LineAlignment = StringAlignment.Center;
+            sf.Alignment = StringAlignment.Center;
+
+            e.Graphics.DrawString(Text.ToUpper(), Font, new SolidBrush(this.ForeColor), rect, sf);
+        }
+
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+            isHovered = true;
+            Invalidate();
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            isHovered = false;
+            Invalidate();
         }
     }
 }
