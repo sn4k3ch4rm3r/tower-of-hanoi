@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TowerOfHanoi.Components;
 
 namespace TowerOfHanoi.Views
 {
@@ -16,11 +17,12 @@ namespace TowerOfHanoi.Views
         {
             InitializeComponent();
             CenterButtons();
+            this.BackColor = Theme.Background;
         }
 
         private void CenterButtons()
         {
-            int padding = 5;
+            int padding = 10;
             btn_login.Location = new Point(this.ClientSize.Width / 2 - btn_login.Width / 2, this.ClientSize.Height / 2 - btn_login.Height / 2 - btn_login.Height - padding);
             btn_play.Location = new Point(this.ClientSize.Width / 2 - btn_play.Width / 2, this.ClientSize.Height / 2 - btn_play.Height / 2);
             btn_stats.Location = new Point(this.ClientSize.Width / 2 - btn_stats.Width / 2, this.ClientSize.Height / 2 - btn_stats.Height / 2 + btn_stats.Height + padding);
@@ -30,11 +32,6 @@ namespace TowerOfHanoi.Views
         {
             base.OnResize(e);
             CenterButtons();
-        }
-
-        private void Menu_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_play_Click(object sender, EventArgs e)

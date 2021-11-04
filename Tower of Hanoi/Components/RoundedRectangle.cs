@@ -10,24 +10,24 @@ namespace TowerOfHanoi.Components
 {
     public class RoundedRectangle
     {
-        public static GraphicsPath GetPath(RectangleF Rect, int radius)
+        public static GraphicsPath GetPath(RectangleF rect, int radius)
         {
-            float m = 2.75F;
-            float r2 = radius / 2f;
-            GraphicsPath GraphPath = new GraphicsPath();
+			int r2 = radius * 2;
+			float x = rect.X;
+			float y = rect.Y;
+			float w = rect.Width;
+			float h = rect.Height;
 
-            GraphPath.AddArc(Rect.X + m, Rect.Y + m, radius, radius, 180, 90);
-            GraphPath.AddLine(Rect.X + r2 + m, Rect.Y + m, Rect.Width - r2 - m, Rect.Y + m);
-            GraphPath.AddArc(Rect.X + Rect.Width - radius - m, Rect.Y + m, radius, radius, 270, 90);
-            GraphPath.AddLine(Rect.Width - m, Rect.Y + r2, Rect.Width - m, Rect.Height - r2 - m);
-            GraphPath.AddArc(Rect.X + Rect.Width - radius - m,
-                           Rect.Y + Rect.Height - radius - m, radius, radius, 0, 90);
-            GraphPath.AddLine(Rect.Width - r2 - m, Rect.Height - m, Rect.X + r2 - m, Rect.Height - m);
-            GraphPath.AddArc(Rect.X + m, Rect.Y + Rect.Height - radius - m, radius, radius, 90, 90);
-            GraphPath.AddLine(Rect.X + m, Rect.Height - r2 - m, Rect.X + m, Rect.Y + r2 + m);
-
-            GraphPath.CloseFigure();
-            return GraphPath;
-        }
+			GraphicsPath p = new GraphicsPath();
+			p.AddArc(x, y, r2, r2, 180, 90);
+			//p.AddLine(x + r, y, x + w - r, y);
+			p.AddArc(x + w - r2, y, r2, r2, 270, 90);
+			//p.AddLine(x + w, y + r, x + w, y + h - r);
+			p.AddArc(x + w - r2, y + h - r2, r2, r2, 0, 90);
+			//p.AddLine(x + r, y + h, x + w - r, y + h);
+			p.AddArc(x, y + h - r2, r2, r2, 90, 90);
+			p.CloseFigure();
+			return p;
+		}
     }
 }

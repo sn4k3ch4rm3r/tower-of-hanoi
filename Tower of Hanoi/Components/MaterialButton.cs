@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -13,7 +9,7 @@ namespace TowerOfHanoi.Components
     {
         public override Color BackColor { get; set; } = Theme.Primary;
         public override Color ForeColor { get; set; } = Theme.OnPrimary;
-        public int Radius { get; set; } = 40;
+        public int Radius { get; set; } = 20;
 
         private bool isHovered = false;
 
@@ -40,20 +36,6 @@ namespace TowerOfHanoi.Components
             sf.Alignment = StringAlignment.Center;
 
             e.Graphics.DrawString(Text.ToUpper(), Font, new SolidBrush(this.ForeColor), rect, sf);
-        }
-
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            base.OnMouseEnter(e);
-            isHovered = true;
-            Invalidate();
-        }
-
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            base.OnMouseLeave(e);
-            isHovered = false;
-            Invalidate();
         }
     }
 }

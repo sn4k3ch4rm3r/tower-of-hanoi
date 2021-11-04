@@ -18,5 +18,13 @@ namespace TowerOfHanoi.Components
 
         public static Color Background { get; } = Color.FromArgb(251, 252, 255);
         public static Color OnBackground { get; } = Color.FromArgb(25, 28, 30);
+
+        public static Color[] DiskColors { get; } =
+        {
+            Color.FromArgb(2, 119, 189),
+            Color.FromArgb(3, 155, 229),
+            Color.FromArgb(41, 182, 246),
+            Color.FromArgb(129, 212, 250)
+        };
     }
 }

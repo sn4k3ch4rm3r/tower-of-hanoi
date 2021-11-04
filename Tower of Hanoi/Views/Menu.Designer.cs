@@ -40,7 +40,7 @@
             this.btn_login.Location = new System.Drawing.Point(116, 152);
             this.btn_login.Margin = new System.Windows.Forms.Padding(4);
             this.btn_login.Name = "btn_login";
-            this.btn_login.Radius = 40;
+            this.btn_login.Radius = 20;
             this.btn_login.Size = new System.Drawing.Size(304, 73);
             this.btn_login.TabIndex = 0;
             this.btn_login.Text = "Bejelentkezés";
@@ -49,10 +49,10 @@
             // 
             this.btn_play.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_play.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btn_play.Location = new System.Drawing.Point(116, 246);
+            this.btn_play.Location = new System.Drawing.Point(116, 233);
             this.btn_play.Margin = new System.Windows.Forms.Padding(4);
             this.btn_play.Name = "btn_play";
-            this.btn_play.Radius = 40;
+            this.btn_play.Radius = 20;
             this.btn_play.Size = new System.Drawing.Size(304, 73);
             this.btn_play.TabIndex = 1;
             this.btn_play.Text = "Játék";
@@ -62,10 +62,10 @@
             // 
             this.btn_stats.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_stats.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btn_stats.Location = new System.Drawing.Point(116, 327);
+            this.btn_stats.Location = new System.Drawing.Point(116, 314);
             this.btn_stats.Margin = new System.Windows.Forms.Padding(4);
             this.btn_stats.Name = "btn_stats";
-            this.btn_stats.Radius = 40;
+            this.btn_stats.Radius = 20;
             this.btn_stats.Size = new System.Drawing.Size(304, 73);
             this.btn_stats.TabIndex = 2;
             this.btn_stats.Text = "Statisztika";
