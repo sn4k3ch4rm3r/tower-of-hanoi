@@ -37,5 +37,19 @@ namespace TowerOfHanoi.Components
 
             e.Graphics.DrawString(Text.ToUpper(), Font, new SolidBrush(this.ForeColor), rect, sf);
         }
+
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+            isHovered = true;
+            Invalidate();
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            isHovered = false;
+            Invalidate();
+        }
     }
 }

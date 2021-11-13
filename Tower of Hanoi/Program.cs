@@ -22,7 +22,7 @@ namespace TowerOfHanoi
 
             SetProcessDpiAwareness(2);
 
-            Application.Run(new Views.Game());
+            Application.Run(new Views.Menu());
         }
     }
 }
