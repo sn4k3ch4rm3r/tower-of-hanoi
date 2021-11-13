@@ -62,7 +62,8 @@ namespace TowerOfHanoi.Views
 
         private void tower_DragEnter(object sender, DragEventArgs e)
         {
-            if((sender as Tower).CanDrop(e.Data.GetData(typeof(Disk)) as Disk))
+            e.Effect = DragDropEffects.None;
+            if ((sender as Tower).CanDrop(e.Data.GetData(typeof(Disk)) as Disk))
                 e.Effect = DragDropEffects.Move;
         }
 
