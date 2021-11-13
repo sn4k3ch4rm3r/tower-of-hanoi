@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TowerOfHanoi.Components;
+using TowerOfHanoi.Data;
 
 namespace TowerOfHanoi.Views
 {
     public partial class Menu : Form
     {
+        private bool isLoggedIn = false;
+        private User user;
+
         public Menu()
         {
             InitializeComponent();
@@ -26,6 +24,7 @@ namespace TowerOfHanoi.Views
             btn_login.Location = new Point(this.ClientSize.Width / 2 - btn_login.Width / 2, this.ClientSize.Height / 2 - btn_login.Height / 2 - btn_login.Height - padding);
             btn_play.Location = new Point(this.ClientSize.Width / 2 - btn_play.Width / 2, this.ClientSize.Height / 2 - btn_play.Height / 2);
             btn_stats.Location = new Point(this.ClientSize.Width / 2 - btn_stats.Width / 2, this.ClientSize.Height / 2 - btn_stats.Height / 2 + btn_stats.Height + padding);
+            label1.Location = new Point(this.ClientSize.Width / 2 - label1.Width / 2, this.ClientSize.Height / 2 - label1.Height / 2 - 2 * btn_login.Height - padding);
         }
 
         protected override void OnResize(EventArgs e)
@@ -36,6 +35,8 @@ namespace TowerOfHanoi.Views
 
         private void btn_play_Click(object sender, EventArgs e)
         {
+            if (!isLoggedIn)
+                return;
             Form gameForm = new Game();
             gameForm.FormClosed += GameForm_FormClosed;
             gameForm.Show();
@@ -45,6 +46,34 @@ namespace TowerOfHanoi.Views
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Show();
+        }
+
+        private void btn_login_Click(object sender, EventArgs e)
+        {
+            if (isLoggedIn)
+            {
+                btn_login.Text = "Bejelentkezés";
+                label1.Text = "Nincs bejelentkezve!";
+                this.isLoggedIn = false;
+            }
+            else
+            {
+                Login login = new Login();
+                login.ShowDialog();
+
+                if (login.DialogResult != DialogResult.OK)
+                    return;
+
+                label1.Text = $"Bejelentkezve mint {login.UserData.Name} ({login.UserData.Age})";
+                btn_login.Text = "Kijelentkezés";
+                this.user = login.UserData;
+                this.isLoggedIn = true;
+            }
+            CenterButtons();
+        }
+
+        private void btn_stats_Click(object sender, EventArgs e)
+        {
         }
     }
 }

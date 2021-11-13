@@ -31,6 +31,7 @@
             this.btn_login = new TowerOfHanoi.Components.MaterialButton();
             this.btn_play = new TowerOfHanoi.Components.MaterialButton();
             this.btn_stats = new TowerOfHanoi.Components.MaterialButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_login
@@ -44,6 +45,7 @@
             this.btn_login.Size = new System.Drawing.Size(304, 73);
             this.btn_login.TabIndex = 0;
             this.btn_login.Text = "Bejelentkezés";
+            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
             // btn_play
             // 
@@ -69,6 +71,17 @@
             this.btn_stats.Size = new System.Drawing.Size(304, 73);
             this.btn_stats.TabIndex = 2;
             this.btn_stats.Text = "Statisztika";
+            this.btn_stats.Click += new System.EventHandler(this.btn_stats_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(155, 119);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(235, 29);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Nincs bejelentkezve!";
             // 
             // Menu
             // 
@@ -76,6 +89,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(252)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(539, 554);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.btn_play);
             this.Controls.Add(this.btn_stats);
@@ -83,6 +97,7 @@
             this.Name = "Menu";
             this.Text = "Menu";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -91,5 +106,6 @@
         private TowerOfHanoi.Components.MaterialButton btn_login;
         private TowerOfHanoi.Components.MaterialButton btn_play;
         private TowerOfHanoi.Components.MaterialButton btn_stats;
+        private System.Windows.Forms.Label label1;
     }
 }
