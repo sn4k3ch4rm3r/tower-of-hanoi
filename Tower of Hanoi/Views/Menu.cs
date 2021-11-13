@@ -38,12 +38,12 @@ namespace TowerOfHanoi.Views
             if (!isLoggedIn)
                 return;
             Form gameForm = new Game();
-            gameForm.FormClosed += GameForm_FormClosed;
+            gameForm.FormClosed += FormClosedHandler;
             gameForm.Show();
             this.Hide();
         }
 
-        private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void FormClosedHandler(object sender, FormClosedEventArgs e)
         {
             this.Show();
         }
@@ -74,6 +74,10 @@ namespace TowerOfHanoi.Views
 
         private void btn_stats_Click(object sender, EventArgs e)
         {
+            Stats stats = new Stats();
+            stats.FormClosed += FormClosedHandler;
+            stats.Show();
+            this.Hide();
         }
     }
 }
