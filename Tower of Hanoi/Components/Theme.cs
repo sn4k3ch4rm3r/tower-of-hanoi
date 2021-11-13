@@ -24,7 +24,7 @@ namespace TowerOfHanoi.Components
             Color.FromArgb(2, 119, 189),
             Color.FromArgb(3, 155, 229),
             Color.FromArgb(41, 182, 246),
-            Color.FromArgb(129, 212, 250)
+            Color.FromArgb(129, 212, 250),
         };
     }
 }

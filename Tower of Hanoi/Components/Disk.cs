@@ -9,10 +9,11 @@ using System.Windows.Forms;
 
 namespace TowerOfHanoi.Components
 {
-    class Disk : Control
+    public class Disk : Control
     {
         public int Level { get; set; } = 0;
-        public override Cursor Cursor { get; set; } = Cursors.SizeAll;
+        public bool Draggable { get; set; } = true;
+        public override Cursor Cursor { get { return Draggable ? Cursors.Hand : Cursors.No; } }
 
         private bool isHovered = false;
 

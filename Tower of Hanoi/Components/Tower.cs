@@ -25,5 +25,27 @@ namespace TowerOfHanoi.Components
                 disk.Invalidate();
             }
         }
+
+        public bool CanDrop(Disk disk)
+        {
+            return Controls.Count == 0 || (Controls[Controls.Count - 1] as Disk).Level <= disk.Level;
+        }
+
+        protected override void OnControlRemoved(ControlEventArgs e)
+        {
+            base.OnControlRemoved(e);
+            if(Controls.Count > 0)
+                (Controls[Controls.Count - 1] as Disk).Draggable = true;
+        }
+
+        protected override void OnControlAdded(ControlEventArgs e)
+        {
+            base.OnControlAdded(e);
+            Disk disk = e.Control as Disk;
+            int count = Controls.Count;
+            if (count > 1)
+                (Controls[count - 2] as Disk).Draggable = false;
+            disk.Location = new Point(Width / 2 - disk.Width / 2, Height - PoleWidth - (count)*disk.Height);
+        }
     }
 }
