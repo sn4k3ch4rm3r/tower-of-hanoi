@@ -15,6 +15,7 @@ namespace TowerOfHanoi.Views
     {
         public int DiskCount { get; set; } = 4;
         public int StepSize { get; set; } = 35;
+        private DateTime startTime;
 
         private Tower[] towers;
         public Game()
@@ -49,6 +50,19 @@ namespace TowerOfHanoi.Views
                 disk.MouseDown += disk_MouseDown;
                 tower.Controls.Add(disk);
             }
+
+            Timer clock = new Timer();
+            clock.Interval = 100;
+            clock.Tick += Clock_Tick;
+            clock.Enabled = true;
+            startTime = DateTime.Now;
+        }
+
+        private void Clock_Tick(object sender, EventArgs e)
+        {
+            TimeSpan delta = DateTime.Now - startTime;
+            clock.Text = $"{delta.Minutes.ToString().PadLeft(2, '0')}:{delta.Seconds.ToString().PadLeft(2, '0')}.{delta.Milliseconds/100}";
+            clock.Location = new Point(ClientSize.Width / 2 - clock.Width / 2, 50);
         }
 
         private void disk_MouseDown(object sender, MouseEventArgs e)
