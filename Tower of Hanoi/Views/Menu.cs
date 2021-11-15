@@ -36,7 +36,10 @@ namespace TowerOfHanoi.Views
         private void btn_play_Click(object sender, EventArgs e)
         {
             if (!isLoggedIn)
+            {
+                MessageBox.Show("Nincs bejelentkezve!");
                 return;
+            }
             Form gameForm = new Game();
             gameForm.FormClosed += FormClosedHandler;
             gameForm.Show();
@@ -46,6 +49,11 @@ namespace TowerOfHanoi.Views
         private void FormClosedHandler(object sender, FormClosedEventArgs e)
         {
             this.Show();
+            if(sender.GetType() == typeof(Game))
+            {
+                Game game = sender as Game;
+                DataHandler.Write(user, game.Time);
+            }
         }
 
         private void btn_login_Click(object sender, EventArgs e)

@@ -13,9 +13,13 @@ namespace TowerOfHanoi.Views
 {
     public partial class Game : Form
     {
+        private const int GOAL_INDEX = 1;
         public int DiskCount { get; set; } = 4;
         public int StepSize { get; set; } = 35;
         private DateTime startTime;
+        public TimeSpan Time { get; private set; }
+
+        private Timer timer;
 
         private Tower[] towers;
         public Game()
@@ -51,10 +55,10 @@ namespace TowerOfHanoi.Views
                 tower.Controls.Add(disk);
             }
 
-            Timer clock = new Timer();
-            clock.Interval = 100;
-            clock.Tick += Clock_Tick;
-            clock.Enabled = true;
+            timer = new Timer();
+            timer.Interval = 100;
+            timer.Tick += Clock_Tick;
+            timer.Enabled = true;
             startTime = DateTime.Now;
         }
 
@@ -85,6 +89,13 @@ namespace TowerOfHanoi.Views
         {
             Disk disk = e.Data.GetData(typeof(Disk)) as Disk;
             (sender as Tower).Controls.Add(disk);
+            if(towers[GOAL_INDEX].Controls.Count == DiskCount)
+            {
+                Time = startTime - DateTime.Now;
+                timer.Stop();
+                MessageBox.Show("Sikeres megoldás!");
+                this.Close();
+            }
         }
     }
 }

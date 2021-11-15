@@ -23,10 +23,7 @@ namespace TowerOfHanoi.Views
         {
             if (tbx_name.Text.Trim() == "")
                 return;
-            User u = new User();
-            u.Name = tbx_name.Text.Trim();
-            u.Age = (int)num_age.Value;
-            UserData = u;
+            UserData = new User(tbx_name.Text.Trim(), (int)num_age.Value);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

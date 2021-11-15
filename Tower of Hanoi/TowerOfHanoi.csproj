@@ -57,6 +57,8 @@
     <Compile Include="Components\Tower.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Data\DataHandler.cs" />
+    <Compile Include="Data\DataPoint.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

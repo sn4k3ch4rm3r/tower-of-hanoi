@@ -8,7 +8,13 @@ namespace TowerOfHanoi.Data
 {
     public struct User
     {
-        public string Name;
-        public int Age;
+        public User(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+
+        public string Name { get; }
+        public int Age { get; }
     }
 }
