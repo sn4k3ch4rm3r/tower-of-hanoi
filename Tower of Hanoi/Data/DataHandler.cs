@@ -25,7 +25,7 @@ namespace TowerOfHanoi.Data
                 string[] data = line.Split(';');
                 DataPoint dp = new DataPoint(
                     new User(data[0], int.Parse(data[1])),
-                    new TimeSpan(long.Parse(data[3]))
+                    new TimeSpan(long.Parse(data[2]))
                 );
                 dataPoints.Add(dp);
             }

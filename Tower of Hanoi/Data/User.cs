@@ -16,5 +16,19 @@ namespace TowerOfHanoi.Data
 
         public string Name { get; }
         public int Age { get; }
+
+        public bool Equals(User other)
+        {
+            return this.Age == other.Age && this.Name == other.Name;
+        }
+
+        public static bool operator == (User u1, User u2)
+        {
+            return u1.Equals(u2);
+        }
+        public static bool operator !=(User u1, User u2)
+        {
+            return !u1.Equals(u2);
+        }
     }
 }

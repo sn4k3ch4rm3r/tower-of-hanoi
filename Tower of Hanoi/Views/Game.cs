@@ -91,7 +91,7 @@ namespace TowerOfHanoi.Views
             (sender as Tower).Controls.Add(disk);
             if(towers[GOAL_INDEX].Controls.Count == DiskCount)
             {
-                Time = startTime - DateTime.Now;
+                Time = DateTime.Now - startTime;
                 timer.Stop();
                 MessageBox.Show("Sikeres megoldás!");
                 this.Close();
