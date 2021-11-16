@@ -18,8 +18,10 @@ namespace TowerOfHanoi.Data
 
         public static List<DataPoint> Read()
         {
-            string[] lines = File.ReadAllLines(FILENAME);
             List<DataPoint> dataPoints = new List<DataPoint>();
+            if (!File.Exists(FILENAME)) return dataPoints;
+
+            string[] lines = File.ReadAllLines(FILENAME);
             foreach (string line in lines)
             {
                 string[] data = line.Split(';');

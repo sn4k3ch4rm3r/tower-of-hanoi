@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TowerOfHanoi.Components;
 using TowerOfHanoi.Data;
 
 namespace TowerOfHanoi.Views
@@ -18,6 +19,8 @@ namespace TowerOfHanoi.Views
             InitializeComponent();
             output.Location = new Point(0, 0);
             output.Size = this.ClientSize;
+            output.BackColor = Theme.Background;
+            output.ForeColor = Theme.OnBackground;
 
             List<DataPoint> dataPoints = DataHandler.Read();
             IEnumerable<IGrouping<User, DataPoint>> byUser = dataPoints.GroupBy(x => x.User);
@@ -33,7 +36,7 @@ namespace TowerOfHanoi.Views
             {
                 List<DataPoint> valid = dataPoints.FindAll(x => x.User == user.Key && x.Time.Ticks > 0);
                 if(valid.Count > 0)
-                    WriteLine($"\t{user.Key.Name} ({user.Key.Age}): {valid.Average(x => x.Time.TotalSeconds)} másodperc");
+                    WriteLine($"\t{user.Key.Name} ({user.Key.Age}): {Math.Round(valid.Average(x => x.Time.TotalSeconds), 2)} másodperc");
             }
             
             WriteLine("\nLegfiatalabb játékosok:");
