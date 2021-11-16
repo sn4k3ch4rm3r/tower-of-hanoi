@@ -44,6 +44,32 @@ namespace TowerOfHanoi.Views
             {
                 WriteLine($"\t{data.Key.Name}");
             }
+
+
+            TextDialog dialog = new TextDialog();
+            dialog.ShowDialog();
+            double input = dialog.Value;
+            WriteLine($"\nKevesebb, mint {input} másodperc alatt teljesítették:");
+            List<DataPoint> filtered = dataPoints.FindAll(x => x.Time.TotalSeconds < input && x.Time.TotalSeconds != 0);
+            if (filtered.Count > 0)
+            {
+                foreach (var data in filtered.GroupBy(x => x.User))
+                {
+                    WriteLine($"\t{data.Key.Name}");
+                }
+            }
+            else
+                WriteLine("\tSenki sem teljesítette ilyen gyorsan");
+
+            dataPoints.Sort((x, y) => x.Time.CompareTo(y.Time));
+            IEnumerator<IGrouping<User, DataPoint>> ranking = dataPoints.FindAll(x => x.Time.Ticks > 0).GroupBy(x=>x.User).GetEnumerator();
+            WriteLine("\nA három leggyorsabb teljesítő");
+            for(int i = 0; i < 3; i++)
+            {
+                ranking.MoveNext();
+                WriteLine($"\t{i+1}. {ranking.Current.Key.ToString()}");
+            }
+            
         }
 
         private void WriteLine(string text)

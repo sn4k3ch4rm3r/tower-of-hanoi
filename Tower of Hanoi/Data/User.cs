@@ -30,5 +30,10 @@ namespace TowerOfHanoi.Data
         {
             return !u1.Equals(u2);
         }
+
+        public override string ToString()
+        {
+            return $"{Name} ({Age})";
+        }
     }
 }
