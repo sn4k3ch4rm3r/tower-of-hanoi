@@ -21,8 +21,11 @@ namespace TowerOfHanoi.Views
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            if (tbx_name.Text.Trim() == "")
+            if (tbx_name.Text.Trim() == "" || tbx_name.Text.Contains(';'))
+            {
+                MessageBox.Show("Hibás név!");
                 return;
+            }
             UserData = new User(tbx_name.Text.Trim(), (int)num_age.Value);
             this.DialogResult = DialogResult.OK;
             this.Close();
